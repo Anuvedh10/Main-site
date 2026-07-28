@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--dashboard.html-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Aurelia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+  <!-- Animated background layer (shared with login) -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-brand">
+        <div class="logo-mark logo-mark-sm">
+          <svg viewBox="0 0 48 48" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4L44 15V33L24 44L4 33V15L24 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M24 4V44" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+            <circle cx="24" cy="24" r="6" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="nav-title">Aurelia</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="dashboard.html" class="nav-link active">Overview</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Reports</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+      </div>
+
+      <div class="nav-actions">
+        <span class="nav-user" id="navUser">Hi, Admin</span>
+        <button class="btn-logout" id="logoutBtn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main dashboard content -->
+  <main class="dash-main">
+
+    <header class="dash-header">
+      <h1 class="dash-welcome">Welcome to Dashboard</h1>
+      <p class="dash-subtitle">Here's a snapshot of your account activity today.</p>
+    </header>
+
+    <!-- Stat cards -->
+    <section class="stat-grid">
+      
+
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="--accent: #8b9dff;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M3 9H21" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M8 2V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M16 2V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="stat-value" id="statProjectCount">0</p>
+        <p class="stat-label">My Projects</p>
+        <a href="projects.html" class="stat-delta up stat-link">View all</a>
+      </div>
+
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="--accent: #6ee7c4;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15 8L21.5 9L17 13.5L18 20L12 17L6 20L7 13.5L2.5 9L9 8L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="stat-value">98.7%</p>
+        <p class="stat-label">Satisfaction Rate</p>
+        <span class="stat-delta up">+0.6%</span>
+      </div>
+
+      <div class="glass-card stat-card">
+        <div class="stat-icon" style="--accent: #ff9d8a;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="stat-value">4.2h</p>
+        <p class="stat-label">Avg. Response Time</p>
+        <span class="stat-delta down">-8.1%</span>
+      </div>
+    </section>
+
+    <!-- Content grid -->
+    <section class="content-grid">
+
+      <!-- Bio panel -->
+      <div class="glass-card panel panel-wide">
+        <div class="panel-header">
+          <h2>About</h2>
+        </div>
+        <p class="account-bio" id="detailsBio">
+          Hi, I'm Anuvedh.<br><br>
+
+          I'm pursuing a <strong>Diploma in Computer Technology and IT Infrastructure</strong>.<br><br>
+
+          I'm passionate about building real-world web applications and mobile applications using
+          <strong>Python, Flutter, HTML, CSS, and JavaScript</strong>.<br><br>
+
+          I'm always learning new technologies and continuously improving my software development skills.<br><br>
+
+          My interests include <strong>backend development, databases, cloud computing, and software architecture</strong>.<br><br>
+
+          I'm committed to building innovative, scalable, and practical software solutions.
+        </p>
+      </div>
+
+      <!-- My Details panel -->
+      <div class="glass-card panel">
+        <div class="panel-header">
+          <h2>My Details</h2>
+          <a href="settings.html" class="panel-link" data-admin-only>Edit</a>
+        </div>
+
+        <div class="account-block">
+          <div class="avatar" id="detailsAvatar">A</div>
+          <div>
+            <p class="account-name" id="detailsName">Anuvedh P</p>
+            <p class="account-role" id="detailsRole">Workspace Owner</p>
+          </div>
+        </div>
+
+        <div class="account-meta">
+          <div class="account-meta-row">
+            <span>Projects</span>
+            <span class="tag" id="detailsProjectCount">0</span>
+          </div>
+          <div class="account-meta-row">
+            <span>Status</span>
+            <span class="tag tag-success">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity panel -->
+      <div class="glass-card panel">
+        <div class="panel-header">
+          <h2>Recent Activity</h2>
+          <a href="#" class="panel-link">View all</a>
+        </div>
+        <ul class="activity-list">
+          <li>
+            <span class="activity-dot" style="--accent: var(--gold-200);"></span>
+            <div>
+              <p class="activity-title">New project "Hostel-management" created</p>
+              <p class="activity-time">8 hours ago</p>
+            </div>
+          </li>
+          <li>
+            <span class="activity-dot" style="--accent: #8b9dff;"></span>
+            <div>
+              <p class="activity-title">Hosted in Render.com successfully</p>
+              <p class="activity-time">8 hours ago</p>
+            </div>
+          </li>
+          <li>
+            <span class="activity-dot" style="--accent: #ff9d8a;"></span>
+            <div>
+              <p class="activity-title">Started new project "Hostel-management"</p>
+              <p class="activity-time">2 days ago</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- My Projects panel (view-only here; editing happens in Settings) -->
+      <div class="glass-card panel panel-wide">
+        <div class="panel-header">
+          <h2>My Projects</h2>
+          <a href="projects.html" class="panel-link">Open Projects page</a>
+        </div>
+        <ul class="activity-list" id="dashboardProjectList">
+          <!-- Populated by dashboard.js -->
+        </ul>
+        <p class="account-bio" id="dashboardProjectsEmpty" style="display:none;">
+          No projects added yet.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="api.js"></script>
+  <script src="common.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

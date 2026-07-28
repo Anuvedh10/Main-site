@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | Aurelia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+
+  <!-- Animated background layer (shared with login/dashboard) -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-brand">
+        <div class="logo-mark logo-mark-sm">
+          <svg viewBox="0 0 48 48" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4L44 15V33L24 44L4 33V15L24 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M24 4V44" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+            <circle cx="24" cy="24" r="6" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="nav-title">Aurelia</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="dashboard.html" class="nav-link">Overview</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="#" class="nav-link">Reports</a>
+        <a href="settings.html" class="nav-link active">Settings</a>
+      </div>
+
+      <div class="nav-actions">
+        <span class="nav-user" id="navUser">Hi, Admin</span>
+        <button class="btn-logout" id="logoutBtn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main settings content -->
+  <main class="dash-main">
+
+    <header class="dash-header">
+      <h1 class="dash-welcome">Settings</h1>
+      <p class="dash-subtitle">Manage your profile content and the projects shown on your Projects page.</p>
+    </header>
+
+    <!-- My Content -->
+    <section class="glass-card panel panel-wide settings-panel">
+      <div class="panel-header">
+        <h2>My Content</h2>
+      </div>
+      <p class="panel-subtext">This shows up on your Dashboard Overview.</p>
+
+      <form id="profileForm" class="settings-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="profileName" class="field-label">Full name</label>
+            <div class="input-shell">
+              <input type="text" id="profileName" placeholder="e.g. Admin User" autocomplete="name" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="profileRole" class="field-label">Role / title</label>
+            <div class="input-shell">
+              <input type="text" id="profileRole" placeholder="e.g. Workspace Owner" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="profileBio" class="field-label">Bio / about</label>
+          <div class="input-shell input-shell-textarea">
+            <textarea id="profileBio" rows="3" placeholder="A couple of sentences about you or your work..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Save changes</button>
+          <span class="save-confirm" id="profileSaveConfirm">Saved ✓</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- My Projects -->
+    <section class="glass-card panel panel-wide settings-panel">
+      <div class="panel-header">
+        <h2>My Projects</h2>
+      </div>
+      <p class="panel-subtext">
+        Projects you add here appear automatically on the
+        <a href="projects.html" class="inline-link">Projects</a> page — each one gets its own
+        working page right away, so there's nothing to upload first.
+      </p>
+
+      <form id="projectForm" class="settings-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="projectTitle" class="field-label">Project title</label>
+            <div class="input-shell">
+              <input type="text" id="projectTitle" placeholder="e.g. Nova Redesign" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="projectTag" class="field-label">Category / tag</label>
+            <div class="input-shell">
+              <input type="text" id="projectTag" placeholder="e.g. Web App, Design, Client Work" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="projectDescription" class="field-label">Short description</label>
+          <div class="input-shell input-shell-textarea">
+            <textarea id="projectDescription" rows="2" placeholder="What is this project about?"></textarea>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="projectLink" class="field-label">Custom link <span class="field-optional">(optional)</span></label>
+          <div class="input-shell">
+            <input type="text" id="projectLink" placeholder="Leave blank to auto-generate a working page" />
+          </div>
+          <p class="field-hint">Leave this blank and a working project page is created for you automatically. Only fill it in if you already have a real page elsewhere to link to instead.</p>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Add project</button>
+          <span class="save-confirm" id="projectSaveConfirm">Added ✓</span>
+        </div>
+      </form>
+
+      <div class="project-manage-list" id="projectManageList">
+        <!-- Populated by settings.js -->
+      </div>
+
+      <p class="empty-hint" id="projectEmptyHint">No projects yet — add your first one above.</p>
+    </section>
+
+  </main>
+
+  <script src="api.js"></script>
+  <script src="common.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
