@@ -412,3 +412,16 @@ body {
   .navbar { padding: 12px 12px 0; }
   .navbar-inner { padding: 10px 14px; }
 }
+
+
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
